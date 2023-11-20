@@ -137,8 +137,7 @@ class Emailparse extends Controller
 
 
     function parseinbound(){
-        //http://local.laravelsendinblue.com/parseinbound
-
+       
         //echo "<pre>"; print_r($this->MAILBOX); die;
 
         $GODADDYMAILBOXCONFG = $this->MAILBOX["GODADDY"];
@@ -185,19 +184,8 @@ class Emailparse extends Controller
             $firstId = min($search);
             $lastId = max($search);
 
-           echo "<PRE>";
-            /*
-            print_r($search);
-
-            foreach($search as $k => $v){
-                $emailData = imap_headerinfo($conn, $v);
-                print_r($emailData);
-            }
-
-            //print_r($headers);
-
-            die;
-            */
+            //echo "<PRE>";
+            
             $inboundArr = array();
             $mails = array();
             $totalEmailCount = imap_num_msg($conn);
@@ -223,15 +211,14 @@ class Emailparse extends Controller
                 //echo $i;
                 //print_r($body);
 
-                print_r($fetchstructure);
-
+                //print_r($fetchstructure);
                 //print_r($emailFetchOverview);
                 //print_r($emailFetchHeader);
-                print_r($emailData);
+                //print_r($emailData);
                 //print_r($threadData);
                 //print_r($fetchBody);
                 //print_r($bodyStrct);
-                die;
+                //die;
 
                 $tmpMsgOffset = $i;
                 $tmpDate = $emailData->date;
@@ -482,9 +469,9 @@ class Emailparse extends Controller
                 $c++;
             }
 
-            echo "<pre>";
+            //echo "<pre>";
             //print_r($mails);
-           print_r($inboundArr); die;
+           //print_r($inboundArr); die;
 
             $this->saveInbox($inboundArr);
         }else{
@@ -517,7 +504,7 @@ class Emailparse extends Controller
             $inbound->messageNumber = $inboundRw["messageNumber"];
             $inbound->messageOffset = $inboundRw["messageOffset"];
             $inbound->created_at = $inboundRw["created_at"];
-            //$inbound->save();
+           
             $newRows[] = $inbound->attributesToArray();
         }
 
@@ -525,8 +512,6 @@ class Emailparse extends Controller
             inbound_model::insert($newRows);
             echo "saved";
         }
-
-        //$inbound->save();
 
     }
 
